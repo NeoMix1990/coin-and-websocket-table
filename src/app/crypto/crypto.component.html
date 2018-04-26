@@ -1,0 +1,67 @@
+<div class="container">
+	<mat-table #table [dataSource]="dataSource" matSort>
+
+		<!-- ID Column -->
+		<!-- <ng-container matColumnDef="ID">
+			<mat-header-cell *matHeaderCellDef mat-sort-header> No. </mat-header-cell>
+			<mat-cell *matCellDef="let i = index"></mat-cell>
+		</ng-container> -->
+
+		<!-- Name Column -->
+		<ng-container matColumnDef="long">
+			<mat-header-cell *matHeaderCellDef mat-sort-header> Name </mat-header-cell>
+			<mat-cell *matCellDef="let coin"> <span>{{coin.long}}</span> </mat-cell>
+		</ng-container>
+
+		<!-- Market Cap -->
+		<ng-container matColumnDef="mktcap">
+			<mat-header-cell *matHeaderCellDef mat-sort-header> Market Cap </mat-header-cell>
+			<mat-cell *matCellDef="let coin"> <span>{{coin.mktcap.toFixed(0)}}</span> </mat-cell>
+		</ng-container>
+
+		<!-- Price Column -->
+		<ng-container matColumnDef="price">
+			<mat-header-cell *matHeaderCellDef mat-sort-header> Price </mat-header-cell>
+			<mat-cell *matCellDef="let coin"> <span>{{coin.price.toFixed(4)}}</span><span></span> </mat-cell>
+		</ng-container>
+
+		<!-- 24hour VWAP Column -->
+		<ng-container matColumnDef="vwapData">
+			<mat-header-cell *matHeaderCellDef mat-sort-header> 24hour VWAP </mat-header-cell>
+			<mat-cell *matCellDef="let coin"> <span>{{coin.vwapData.toFixed(4)}}</span> </mat-cell>
+		</ng-container>
+
+		<!-- Available Supply Column -->
+		<ng-container matColumnDef="supply">
+			<mat-header-cell *matHeaderCellDef mat-sort-header> Available Supply </mat-header-cell>
+			<mat-cell *matCellDef="let coin"> <span>{{coin.supply}}</span> </mat-cell>
+		</ng-container>
+
+		<!-- 24 Hour Volume Column -->
+		<ng-container matColumnDef="usdVolume">
+			<mat-header-cell *matHeaderCellDef mat-sort-header> 24 Hour Volume </mat-header-cell>
+			<mat-cell *matCellDef="let coin"> <span>{{coin.usdVolume}}</span> </mat-cell>
+		</ng-container>
+
+		<!-- %24hr Column -->
+		<ng-container matColumnDef="cap24hrChange">
+			<mat-header-cell *matHeaderCellDef mat-sort-header> %24hr </mat-header-cell>
+			<mat-cell *matCellDef="let coin"> <span>{{coin.cap24hrChange}}</span> </mat-cell>
+		</ng-container>
+
+		<!-- Trade Column -->
+		<ng-container matColumnDef="shapeshift">
+			<mat-header-cell *matHeaderCellDef mat-sort-header> Trade </mat-header-cell>
+			<mat-cell *matCellDef="let coin">
+				<div style="visibility: visible;" *ngIf="coin.shapeshift == true">
+					<a href="#">Buy</a>
+					<span>/</span>
+					<a href="#">Sell</a>
+				</div>
+			</mat-cell>
+		</ng-container>
+
+		<mat-header-row *matHeaderRowDef="displayedColumns" (click)="rowClicked(row)"></mat-header-row>
+		<mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+	</mat-table>
+</div>
